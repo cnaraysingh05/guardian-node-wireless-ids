@@ -7,21 +7,48 @@ It monitors the 2.4GHz spectrum in monitor mode and detects:
 - Rogue probe requests for your home SSID
 - Deauthentication attacks
 - New/unknown wireless clients
-- Packet captures for forensic review
-- Live dashboard via Flask
-- Discord webhook alerts
-- Automatic PCAP rotation + JSON state files
-- Fully automated systemd service on boot
+- Passive device fingerprinting (MAC vendor parsing)
+- Automatic Packet captures for forensic review
+- Real-time dashboard via Flask
+- Discord webhook security alerts
+- Automatic PCAP rotation + JSON state management
+- 24/7 daemonized service using systemd
 
 This repository contains **the source code only** (dashboard + IDS engine).
 All sensitive details (SSID, logs, PCAPs, webhook URLs, JSON state files) were removed intentionally.
 
 ### Features
-- Written in Python using Scapy, Flask, and systemd
-- Runs headless as a service
-- Forensic packet captures saved automatically
-- Modular and hackable design for expansion
-- Works with Atheros AR9271 and Realtek monitor-mode adapters
+- Python-based IDS engine using Scapy
+- Flask dashboard for live monitoring
+- Fully automated systemd service on boot
+- AR9271 / Realtek monitor-mode compatible
+- Headless operation
+- Modular structure for expansion
+- PCAP evidence capture for all detected attacks
+- JSON state files for dashboard integration
+
+### System Architecture
+[ Wi-Fi Spectrum ]
+        ↓ Monitor Mode (wlan1)
+[ Scapy Sniffer ]
+        ↓ Packets
+[ IDS Engine ]
+    - Evil Twin detection
+    - Probe request analysis
+    - Deauth detection
+    - Client fingerprinting
+        ↓ Events
+[ JSON State Files ] → Flask Dashboard
+        ↓ Alerts
+[ Discord Webhook ]
+
+### Technologies Used
+- Python 3
+- Scapy
+- Flask
+- systemd
+- Atheros AR9271 monitor-mode adapter
+- Raspberry Pi OS
 
 ### Disclaimer
 This is for educational, home-lab, and security-research purposes only.
@@ -30,3 +57,4 @@ Do not use it to monitor networks you do not own.
 ### Author
 **Christopher Naraysingh**
 Florida Atlantic University — Computer Science / Cybersecurity Track
+Github: https://github.com/cnaraysingh05

@@ -27,20 +27,32 @@ All sensitive details (SSID, logs, PCAPs, webhook URLs, JSON state files) were r
 - PCAP evidence capture for all detected attacks
 - JSON state files for dashboard integration
 
-### System Architecture
+## System Architecture
+
 [ Wi-Fi Spectrum ]
-        ↓ Monitor Mode (wlan1)
+         │
+         ▼
+Monitor Mode (wlan1)
+         │
+         ▼
 [ Scapy Sniffer ]
-        ↓ Packets
+         │
+         ▼
+      Packets
+         │
+         ▼
 [ IDS Engine ]
-    - Evil Twin detection
-    - Probe request analysis
-    - Deauth detection
-    - Client fingerprinting
-        ↓ Events
-[ JSON State Files ] → Flask Dashboard
-        ↓ Alerts
-[ Discord Webhook ]
+ - Evil Twin detection
+ - Probe request analysis
+ - Deauth detection
+ - Client fingerprinting
+         │
+         ▼
+[ JSON State Files ] ──► Flask Dashboard
+         │
+         ▼
+     Discord Alerts
+
 
 ### Technologies Used
 - Python 3
